@@ -24,19 +24,27 @@ public class Equipo {
 
     public void monstrarlistaJugadores(){
         for (int rep = 0; rep < listaJugadores.length; rep ++){
-            //  tengo que verificar mas adelante si esto es asi asi
-            System.out.println(listaJugadores[rep]);
+            System.out.print(listaJugadores[rep].getNombre() + "\t" +
+                               listaJugadores[rep].getPosicion() + "\t" +
+                               listaJugadores[rep].getEdad() + "\t" +
+                               listaJugadores[rep].getNacionalidad() + "\t");
+            if (listaJugadores[rep].getLesionado()){
+                System.out.println("SI");
+            }
+            else{
+                System.out.println("NO");
+            }
         }
     }
 
     public void adquirirJugador (Jugador jugador){
         if (getNumJugadores() >= numMaxJugadores){
             listaJugadores[getNumJugadores() + 1] = jugador;
+
         }
         else{
-            System.out.println("ERROR: El numero maximo de jugadores ya se ha alcanzado");
+            System.out.println("El equipo esta lleno");
         }
-
     }
 
     public void venderJugador(String nombreJugador){

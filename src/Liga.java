@@ -10,8 +10,9 @@ public class Liga {
 
     public void mostrarlistadoEquipos(){
         for (int rep = 0; rep < ListadoEquipos.length; rep ++){
-            //  tengo que verificar mas adelante si esto es asi asi
-            System.out.println(ListadoEquipos[rep]);
+            System.out.println(ListadoEquipos[rep].getNombre() + "\t" +
+                               ListadoEquipos[rep].getCiudad() + "\t" +
+                               ListadoEquipos[rep].getNumJugadores());
         }
     }
 
@@ -20,22 +21,34 @@ public class Liga {
     }
 
     public Equipo getEquipo(String nombreEquipo){
+        Equipo retorno = null;
+
         for (int rep = 0; rep < ListadoEquipos.length; rep ++){
             if(ListadoEquipos[rep].getNombre() == nombreEquipo){
-                return ListadoEquipos[rep];
+                retorno = ListadoEquipos[rep];
             }
         }
-        System.out.println("ERROR: no se ha encontrado el equipo.");
-        return null; // cambiarlo mas adelante
+        if (retorno != null){
+            return retorno;
+        }
+        else{
+            return null;
+        }
+
     }
 
     public String getPais(){
         return Pais;
     }
 
-    public void añadirEquipo(Equipo equipo) {
+    public void anadirEquipo(Equipo equipo) {
         if (ListadoEquipos.length < numMaxEquipos) {
             ListadoEquipos[ListadoEquipos.length + 1] = equipo;
+            // cambiar
+            System.out.println("Equipo temp insertado");
+        }
+        else{
+            System.out.println("La liga esta llena");
         }
     }
 }
