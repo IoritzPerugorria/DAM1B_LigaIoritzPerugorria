@@ -25,9 +25,9 @@ public class Equipo {
     public void monstrarlistaJugadores(){
         for (int rep = 0; rep < listaJugadores.length; rep ++){
             System.out.print(listaJugadores[rep].getNombre() + "\t" +
-                               listaJugadores[rep].getPosicion() + "\t" +
-                               listaJugadores[rep].getEdad() + "\t" +
-                               listaJugadores[rep].getNacionalidad() + "\t");
+                    listaJugadores[rep].getPosicion() + "\t" +
+                    listaJugadores[rep].getEdad() + "\t" +
+                    listaJugadores[rep].getNacionalidad() + "\t");
             if (listaJugadores[rep].getLesionado()){
                 System.out.println("SI");
             }
@@ -56,10 +56,11 @@ public class Equipo {
                 for (int pos = rep; pos < listaJugadores.length; pos ++){
                     listaJugadores[pos] = listaJugadores[pos + 1];
                 }
+                System.out.println("Jugador vendido");
             }
-                // el valor a lo mejor no esta bien. comprobar.
+            // el valor a lo mejor no esta bien. comprobar.
             if (rep == listaJugadores.length){
-                System.out.println("ERROR: No se ha encontrado ningun jugador con ese nombre.\nAsegurese que el nombre este bien escrito.");
+                System.out.println("El jugador no existe");
             }
         }
     }
