@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -23,7 +24,7 @@ public class Main {
             System.out.println("MENU DE LA LIGA\n" +
                     "1- Insertar Equipo\n" +
                     "2- Insertar Jugador\n" +
-                    "3-Ver equipos de la liga\n" +
+                    "3- Ver equipos de la liga\n" +
                     "4- Ver jugadores de un equipo\n" +
                     "5- Vender jugador\n" +
                     "6- Salir");
@@ -100,11 +101,20 @@ public class Main {
             int edad = input.nextInt();
 
             String pos = "a";
-            while (pos != "POR" && pos != "DEF" && pos != "CTC" && pos != "DEL") {
+            while (!Objects.equals(pos, "POR") &&
+                    !Objects.equals(pos, "DEF") &&
+                    !Objects.equals(pos, "CTC") &&
+                    !Objects.equals(pos, "DEL")) {
+
                 System.out.println("Indique la posición del jugador:\n" +
                         "(Valores validos: DEL, CTC, DEF, POR)");
                 pos = input.nextLine();
-                if (pos != "POR" && pos != "DEF" && pos != "CTC" && pos != "DEL") {
+
+                if (!Objects.equals(pos, "POR") &&
+                        !Objects.equals(pos, "DEF") &&
+                        !Objects.equals(pos, "CTC") &&
+                        !Objects.equals(pos, "DEL")) {
+
                     System.out.println("Posicion no valida.");
                 }
             }
@@ -115,7 +125,7 @@ public class Main {
             System.out.println("Insertando jugador...");
             equipo.adquirirJugador(jugador);
 
-            System.out.println("Jugador" + nombre + "insertado en " + equipo.getNombre()); // cambiar
+            System.out.println("Jugador " + nombre + " insertado en " + equipo.getNombre());
         }
 
     }
@@ -146,7 +156,7 @@ public class Main {
         Equipo equipo = liga.getEquipo(input.nextLine());
 
         System.out.println("Inserte el nombre del jugador:");
-        String jugador = equipo.getNombre();
+        String jugador = input.nextLine();
 
         System.out.println("Vendiendo jugador...");
         equipo.venderJugador(jugador);

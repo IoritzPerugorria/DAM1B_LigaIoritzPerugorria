@@ -11,7 +11,7 @@ public class Liga {
     }
 
     public void mostrarlistadoEquipos(){
-        for (int rep = 0; rep < ListadoEquipos.length; rep ++){
+        for (int rep = 0; rep < ListadoEquipos.length && ListadoEquipos[rep] != null; rep ++){
             System.out.println(ListadoEquipos[rep].getNombre() + "\t" +
                                ListadoEquipos[rep].getCiudad() + "\t" +
                                ListadoEquipos[rep].getNumJugadores());
@@ -19,7 +19,14 @@ public class Liga {
     }
 
     public int getNumeroEquipos(){
-        return ListadoEquipos.length;
+        int contador = 0;
+        for (int rep = 0; rep < ListadoEquipos.length; rep ++){
+            if (ListadoEquipos[rep] == null){
+                break;
+            }
+            contador ++;
+        }
+        return contador;
     }
 
     public Equipo getEquipo(String nombreEquipo){
@@ -45,14 +52,18 @@ public class Liga {
     }
 
     public void anadirEquipo(Equipo equipo) {
-        for (int rep = 0; rep < ListadoEquipos.length; rep ++)
-        if (ListadoEquipos[rep] == null) {
-            ListadoEquipos[rep] = equipo;
-            System.out.println("Equipo " + equipo.getNombre() + " insertado\n");
-            break;
-        }
-        else{
-            System.out.println("La liga esta llena\n");
+        for (int rep = 0; rep < ListadoEquipos.length; rep ++){
+
+            if (ListadoEquipos[ListadoEquipos.length - 1] != null){
+                System.out.println("El equipo esta lleno");
+                break;
+            }
+
+            if (ListadoEquipos[rep] == null) {
+                ListadoEquipos[rep] = equipo;
+                System.out.println("Equipo " + equipo.getNombre() + " insertado\n");
+                break;
+            }
         }
     }
 }
