@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Liga {
     private String Pais;
     private final int numMaxEquipos = 20;
@@ -5,7 +7,7 @@ public class Liga {
 
     public Liga(String Pais){
         this.Pais = Pais;
-        Equipo[] ListadoEquipo = new Equipo[numMaxEquipos];
+        ListadoEquipos = new Equipo[numMaxEquipos];
     }
 
     public void mostrarlistadoEquipos(){
@@ -24,8 +26,9 @@ public class Liga {
         Equipo retorno = null;
 
         for (int rep = 0; rep < ListadoEquipos.length; rep ++){
-            if(ListadoEquipos[rep].getNombre() == nombreEquipo){
+            if(Objects.equals(ListadoEquipos[rep].getNombre(), nombreEquipo)){
                 retorno = ListadoEquipos[rep];
+                break;
             }
         }
         if (retorno != null){
@@ -42,13 +45,14 @@ public class Liga {
     }
 
     public void anadirEquipo(Equipo equipo) {
-        if (ListadoEquipos.length < numMaxEquipos) {
-            ListadoEquipos[ListadoEquipos.length + 1] = equipo;
-            // cambiar
-            System.out.println("Equipo temp insertado");
+        for (int rep = 0; rep < ListadoEquipos.length; rep ++)
+        if (ListadoEquipos[rep] == null) {
+            ListadoEquipos[rep] = equipo;
+            System.out.println("Equipo " + equipo.getNombre() + " insertado\n");
+            break;
         }
         else{
-            System.out.println("La liga esta llena");
+            System.out.println("La liga esta llena\n");
         }
     }
 }
