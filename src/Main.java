@@ -21,13 +21,15 @@ public class Main {
 
         while (imput != 6) {
 
-            System.out.println("MENU DE LA LIGA\n" +
-                    "1- Insertar Equipo\n" +
-                    "2- Insertar Jugador\n" +
-                    "3- Ver equipos de la liga\n" +
-                    "4- Ver jugadores de un equipo\n" +
-                    "5- Vender jugador\n" +
-                    "6- Salir");
+            System.out.println("""
+                    MENU DE LA LIGA
+                    1- Insertar Equipo
+                    2- Insertar Jugador
+                    3- Ver equipos de la liga
+                    4- Ver jugadores de un equipo
+                    5- Vender jugador
+                    6- Salir
+                    """);
 
             imput = scanner.nextInt();
 
@@ -53,6 +55,7 @@ public class Main {
                     break;
 
                 case 6:
+
                     break;
 
             }
@@ -69,12 +72,9 @@ public class Main {
         String nombre = input.nextLine();
 
         System.out.println("Inserte la ciudad del equipo:");
-
         String ciudad = input.nextLine();
 
-
         System.out.println("Creando Equipo...");
-        // cambiar nombre de clase
         Equipo equipo = new Equipo(nombre, ciudad);
 
         System.out.println("Insertando Equipo...");
@@ -100,14 +100,14 @@ public class Main {
             System.out.println("Indique la edad del jugador:");
             int edad = input.nextInt();
 
-            String pos = "a";
-            while (!Objects.equals(pos, "POR") &&
+            String pos = "";
+            while  (!Objects.equals(pos, "POR") &&
                     !Objects.equals(pos, "DEF") &&
                     !Objects.equals(pos, "CTC") &&
                     !Objects.equals(pos, "DEL")) {
 
                 System.out.println("Indique la posición del jugador:\n" +
-                        "(Valores validos: DEL, CTC, DEF, POR)");
+                                   "(Valores validos: DEL, CTC, DEF, POR)");
                 pos = input.nextLine();
 
                 if (!Objects.equals(pos, "POR") &&
@@ -132,7 +132,7 @@ public class Main {
 
     public static void VerLiga() {
         System.out.println("**********COMPOSICIÓN DE LA LIGA*************************");
-        System.out.println("EQUIPO \tCIUDAD \tNUMERO JUGADORES");
+        System.out.println("EQUIPO\tCIUDAD\tNUMERO_JUGADORES");
         liga.mostrarlistadoEquipos();
         System.out.println("*********************************************************");
     }
@@ -140,7 +140,7 @@ public class Main {
     public static void verJugadores() {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Introduce el nombre del equipo de los jugadores que se desea visualizar");
+        System.out.println("Introduce el nombre del equipo de los que quieres ver los jugadores");
         Equipo equipo = liga.getEquipo(input.nextLine());
 
         System.out.println("********* Osasuna ****************************");

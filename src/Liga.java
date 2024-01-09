@@ -51,18 +51,26 @@ public class Liga {
         return Pais;
     }
 
-    public void anadirEquipo(Equipo equipo) {
-        for (int rep = 0; rep < ListadoEquipos.length; rep ++){
+    public void anadirEquipo(Equipo miEquipo) {
 
-            if (ListadoEquipos[ListadoEquipos.length - 1] != null){
-                System.out.println("El equipo esta lleno");
-                break;
-            }
+        if (ListadoEquipos[ListadoEquipos.length - 1] != null){
+            System.out.println("El equipo esta lleno");
 
-            if (ListadoEquipos[rep] == null) {
-                ListadoEquipos[rep] = equipo;
-                System.out.println("Equipo " + equipo.getNombre() + " insertado\n");
-                break;
+        }
+        else{
+            for (int rep = 0; rep < ListadoEquipos.length; rep ++){
+
+                if (ListadoEquipos[rep] == null) {
+                    ListadoEquipos[rep] = miEquipo;
+                    System.out.println("Equipo " + miEquipo.getNombre() + " insertado\n");
+                    break;
+                }
+
+                if (Objects.equals(ListadoEquipos[rep].getCiudad(), miEquipo.getCiudad()) &&
+                    Objects.equals(ListadoEquipos[rep].getNombre(), miEquipo.getNombre())){
+                         System.out.println("El equipo ya existe");
+                         break;
+                }
             }
         }
     }
