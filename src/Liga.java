@@ -30,12 +30,20 @@ public class Liga {
     }
 
     public Equipo getEquipo(String nombreEquipo){
+
         Equipo retorno = null;
 
-        for (int rep = 0; rep < ListadoEquipos.length; rep ++){
-            if(Objects.equals(ListadoEquipos[rep].getNombre(), nombreEquipo)){
-                retorno = ListadoEquipos[rep];
-                break;
+        if (ListadoEquipos[0] == null) {
+            System.out.println("La liga esta vacia");
+        }
+        else {
+
+            for (int rep = 0; rep < ListadoEquipos.length; rep++) {
+
+                if (Objects.equals(ListadoEquipos[rep].getNombre(), nombreEquipo)) {
+                    retorno = ListadoEquipos[rep];
+                    break;
+                }
             }
         }
         if (retorno != null){

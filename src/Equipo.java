@@ -58,7 +58,11 @@ public class Equipo {
 
     public void venderJugador(String nombreJugador){
         // tengo que comprobar que todo funcione bien
-        for (int rep = 0; rep < listaJugadores.length; rep ++){
+
+        if (listaJugadores[0] == null) {
+            System.out.println("El equipo esta vacio.\nIntroduzca un jugador para poder venderlo\n");
+        } else {
+            for (int rep = 0; rep < listaJugadores.length; rep ++){
 
             if (Objects.equals(listaJugadores[rep].getNombre(), nombreJugador)){
 
@@ -73,6 +77,7 @@ public class Equipo {
             if (rep == listaJugadores.length){
                 System.out.println("El jugador no existe");
             }
+        }
         }
     }
 }

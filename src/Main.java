@@ -80,6 +80,7 @@ public class Main {
         System.out.println("Insertando Equipo...");
 
         liga.anadirEquipo(equipo);
+        continuar();
     }
 
     public static void Insertarjugador() {
@@ -108,7 +109,8 @@ public class Main {
 
                 System.out.println("Indique la posición del jugador:\n" +
                                    "(Valores validos: DEL, CTC, DEF, POR)");
-                pos = input.nextLine();
+
+                pos = input.next();
 
                 if (!Objects.equals(pos, "POR") &&
                         !Objects.equals(pos, "DEF") &&
@@ -125,9 +127,9 @@ public class Main {
             System.out.println("Insertando jugador...");
             equipo.adquirirJugador(jugador);
 
-            System.out.println("Jugador " + nombre + " insertado en " + equipo.getNombre());
+            System.out.println("Jugador " + nombre + " insertado en " + equipo.getNombre() + "\n");
         }
-
+        continuar();
     }
 
     public static void VerLiga() {
@@ -135,6 +137,7 @@ public class Main {
         System.out.println("EQUIPO\tCIUDAD\tNUMERO_JUGADORES");
         liga.mostrarlistadoEquipos();
         System.out.println("*********************************************************");
+        continuar();
     }
 
     public static void verJugadores() {
@@ -147,19 +150,36 @@ public class Main {
         System.out.println("NOMBRE" + "\t" + "POSICIÓN" + "\t" + "EDAD" + "\t" + "NAC" + "\t" + "LESIONADO");
         equipo.monstrarlistaJugadores();
         System.out.println("*********************************************");
+        continuar();
     }
 
     public static void venderJugador() {
-        Scanner input = new Scanner(System.in);
+
+        if (liga.getNumeroEquipos() == 0) {
+            System.out.println("No hay equipos en la liga\nIntroduzca equipos en la liga, y luego introduzca jugadores en los equipos");
+        }
+        else {
+            Scanner input = new Scanner(System.in);
 
         System.out.println("Inserte el nombre del equipo donde quiere vender el jugador:");
         Equipo equipo = liga.getEquipo(input.nextLine());
 
-        System.out.println("Inserte el nombre del jugador:");
-        String jugador = input.nextLine();
+            if (equipo != null) {
+                System.out.println("Inserte el nombre del jugador:");
+                String jugador = input.nextLine();
 
-        System.out.println("Vendiendo jugador...");
-        equipo.venderJugador(jugador);
+                System.out.println("Vendiendo jugador...\n");
+                equipo.venderJugador(jugador);
+            }
+        }
+        continuar();
+    }
+
+
+    public static void continuar() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escriba cualquier cosa para continuar");
+        scanner.next();
     }
 
 }
