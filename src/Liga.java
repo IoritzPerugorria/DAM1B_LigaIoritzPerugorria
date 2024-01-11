@@ -12,15 +12,17 @@ public class Liga {
 
     public void mostrarlistadoEquipos(){
         for (int rep = 0; rep < ListadoEquipos.length && ListadoEquipos[rep] != null; rep ++){
-            System.out.println(ListadoEquipos[rep].getNombre() + "\t" +
-                               ListadoEquipos[rep].getCiudad() + "\t" +
-                               ListadoEquipos[rep].getNumJugadores());
+            System.out.print(ListadoEquipos[rep].getNombre() + "\t");
+            System.out.print(ListadoEquipos[rep].getCiudad() + "\t");
+            System.out.print(ListadoEquipos[rep].getNumJugadores() + "\n");
         }
     }
 
     public int getNumeroEquipos(){
         int contador = 0;
+
         for (int rep = 0; rep < ListadoEquipos.length; rep ++){
+
             if (ListadoEquipos[rep] == null){
                 break;
             }
@@ -34,7 +36,7 @@ public class Liga {
         Equipo retorno = null;
 
         if (ListadoEquipos[0] == null) {
-            System.out.println("La liga esta vacia");
+            System.out.println("No se han encontrado equipos en la Liga.\nPor favor, introduzca equipos\n");
         }
         else {
 
@@ -46,6 +48,7 @@ public class Liga {
                 }
             }
         }
+
         if (retorno != null){
             return retorno;
         }
@@ -61,8 +64,8 @@ public class Liga {
 
     public void anadirEquipo(Equipo miEquipo) {
 
-        if (ListadoEquipos[ListadoEquipos.length - 1] != null){
-            System.out.println("El equipo esta lleno");
+        if (ListadoEquipos[numMaxEquipos - 1] != null){
+            System.out.println("La liga esta llena");
 
         }
         else{

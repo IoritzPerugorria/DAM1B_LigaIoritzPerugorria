@@ -2,24 +2,20 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-
-
-
     private static Liga liga;
 
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Empieze creando una liga:\n");
-        System.out.println("Inserte el país de la liga:");
+        System.out.println("Empieze creando una liga.\n");
+        System.out.println("Inserte el país de la liga:\n");
 
         liga = new Liga(scanner.nextLine());
 
 
-        int imput = 0;
+        String imput = "0";
 
-        while (imput != 6) {
+        while (!imput.equals("6")) {
 
             System.out.println("""
                     MENU DE LA LIGA
@@ -31,33 +27,36 @@ public class Main {
                     6- Salir
                     """);
 
-            imput = scanner.nextInt();
+            imput = scanner.nextLine();
 
             switch (imput) {
-                case 1:
+                case "1":
                     InsertarEquipo();
                     break;
 
-                case 2:
+                case "2":
                     Insertarjugador();
                     break;
 
-                case 3:
+                case "3":
                     VerLiga();
                     break;
 
-                case 4:
+                case "4":
                     verJugadores();
                     break;
 
-                case 5:
+                case "5":
                     venderJugador();
                     break;
 
-                case 6:
-
+                case "6":
+                    System.out.println("Adios");
                     break;
 
+                default:
+                    System.out.println("Valor incorrecto.\n");
+                    break;
             }
         }
     }
@@ -66,9 +65,7 @@ public class Main {
     public static void InsertarEquipo() {
         Scanner input = new Scanner(System.in);
 
-
         System.out.println("Inserte el nombre del equipo:");
-
         String nombre = input.nextLine();
 
         System.out.println("Inserte la ciudad del equipo:");
@@ -77,9 +74,9 @@ public class Main {
         System.out.println("Creando Equipo...");
         Equipo equipo = new Equipo(nombre, ciudad);
 
-        System.out.println("Insertando Equipo...");
-
+        System.out.println("Insertando Equipo...\n");
         liga.anadirEquipo(equipo);
+
         continuar();
     }
 
@@ -101,18 +98,19 @@ public class Main {
             System.out.println("Indique la edad del jugador:");
             int edad = input.nextInt();
 
+
             String pos = "";
-            while  (!Objects.equals(pos, "POR") &&
+
+            while
+            (!Objects.equals(pos, "POR") &&
                     !Objects.equals(pos, "DEF") &&
                     !Objects.equals(pos, "CTC") &&
                     !Objects.equals(pos, "DEL")) {
-
-                System.out.println("Indique la posición del jugador:\n" +
-                                   "(Valores validos: DEL, CTC, DEF, POR)");
-
+                System.out.println("Indique la posición del jugador:\n" + "(Valores validos: DEL, CTC, DEF, POR)");
                 pos = input.next();
 
-                if (!Objects.equals(pos, "POR") &&
+                if
+                (!Objects.equals(pos, "POR") &&
                         !Objects.equals(pos, "DEF") &&
                         !Objects.equals(pos, "CTC") &&
                         !Objects.equals(pos, "DEL")) {
@@ -134,7 +132,7 @@ public class Main {
 
     public static void VerLiga() {
         System.out.println("**********COMPOSICIÓN DE LA LIGA*************************");
-        System.out.println("EQUIPO\tCIUDAD\tNUMERO_JUGADORES");
+        System.out.println("EQUIPO\t\tCIUDAD\t\tNUMERO_JUGADORES");
         liga.mostrarlistadoEquipos();
         System.out.println("*********************************************************");
         continuar();
@@ -143,13 +141,17 @@ public class Main {
     public static void verJugadores() {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Introduce el nombre del equipo de los que quieres ver los jugadores");
+        System.out.println("Introduce el nombre del equipo del que quieres ver los jugadores");
         Equipo equipo = liga.getEquipo(input.nextLine());
 
-        System.out.println("********* Osasuna ****************************");
-        System.out.println("NOMBRE" + "\t" + "POSICIÓN" + "\t" + "EDAD" + "\t" + "NAC" + "\t" + "LESIONADO");
-        equipo.monstrarlistaJugadores();
-        System.out.println("*********************************************");
+        if (equipo.getNumJugadores() != 0) {
+            System.out.println("********* " + equipo.getNombre() + " ****************************");
+            System.out.println("NOMBRE" + "\t\t" + "POSICIÓN" + "\t\t" + "EDAD" + "\t\t" + "NAC" + "\t\t" + "LESIONADO");
+            equipo.monstrarlistaJugadores();
+            System.out.println("*********************************************");
+        } else {
+            System.out.println("No hay jugadores en el equipo");
+        }
         continuar();
     }
 
@@ -157,12 +159,11 @@ public class Main {
 
         if (liga.getNumeroEquipos() == 0) {
             System.out.println("No hay equipos en la liga\nIntroduzca equipos en la liga, y luego introduzca jugadores en los equipos");
-        }
-        else {
+        } else {
             Scanner input = new Scanner(System.in);
 
-        System.out.println("Inserte el nombre del equipo donde quiere vender el jugador:");
-        Equipo equipo = liga.getEquipo(input.nextLine());
+            System.out.println("Inserte el nombre del equipo donde quiere vender el jugador:");
+            Equipo equipo = liga.getEquipo(input.nextLine());
 
             if (equipo != null) {
                 System.out.println("Inserte el nombre del jugador:");
@@ -180,6 +181,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escriba cualquier cosa para continuar");
         scanner.next();
+        System.out.println("\n");
     }
 
 }

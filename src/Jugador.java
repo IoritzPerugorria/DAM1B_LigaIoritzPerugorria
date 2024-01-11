@@ -9,8 +9,8 @@ public class Jugador {
         this.Nombre = Nombre;
         this.Nacionalidad = Nacionalidad;
         this.edad = edad;
-        this.Lesionado = false;
         this.Posicion = Posicion;
+        this.Lesionado = false;
     }
 
     public String getNombre(){
