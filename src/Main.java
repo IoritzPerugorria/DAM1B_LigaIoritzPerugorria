@@ -98,7 +98,6 @@ public class Main {
             System.out.println("Indique la edad del jugador:");
             int edad = input.nextInt();
 
-
             String pos = "";
 
             while
